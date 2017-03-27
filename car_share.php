@@ -112,13 +112,14 @@ mysqli_query($cxn,"create table ktcs_member
      email						VARCHAR(40),
      drivers_license			INT not null,
      monthly_membership_fee		INT not null,
+     is_admin					BOOL not null,
 	 primary key (member_number)
 	);");
 
 mysqli_query($cxn,"insert into ktcs_member values
-	(0000,'Alex','Seppala','1234 6th avenue',1234567890,'abcd@gmail.com',12345,25),
-	(0001,'Angus','Short','3456 8th avenue',2468024680,'efgh@gmail.com',34567,20),
-	(0002,'Eric','Prits','8765 23rd avenue',0987654321,'ijkl@gmail.com',56789,20);");
+	(0000,'Alex','Seppala','1234 6th avenue',1234567890,'abcd@gmail.com',12345,25, false),
+	(0001,'Angus','Short','3456 8th avenue',2468024680,'efgh@gmail.com',34567,20, true),
+	(0002,'Eric','Prits','8765 23rd avenue',0987654321,'ijkl@gmail.com',56789,20, true);");
 
 mysqli_query($cxn,"create table cars
 	(VIN					INT not null,
