@@ -14,6 +14,10 @@
         <title>cars</title>
     </head>
 <body>
+    <?php
+    //Create a user session or resume an existing one
+    session_start();
+    ?>
 
    <?php
         if(isset($_POST['addCarButton'])){
@@ -24,6 +28,9 @@
 
     <?php
         if(isset($_POST['rentalHistoryButton'])){
+            if (isset($_POST['rentalHistoryVin'])) {
+                $_SESSION['currentRentalHistoryVIN'] = $_POST['rentalHistoryVin'];
+            }
         header('Location: rentalHistory.php');
         exit;
 }
@@ -42,7 +49,7 @@
         exit;
 }
 ?>
-    <form name='admin' id='admin' action='admin.php' method='post'>
+    <form name='cars' id='cars' action='cars.php' method='post'>
     <table border='0'>
             <td>
                 <input type='submit' id='addCarButton' name='addCarButton' value='Add a car' />
