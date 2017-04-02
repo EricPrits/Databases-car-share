@@ -61,7 +61,10 @@
             </td>
 			<td>
                 <input type='submit' id='reserveCarButton' name='reserveCarButton' value='Reserve Car' />
-            </td>	
+            </td>
+			<td>
+                <input type='submit' id='logOutButton' name='logOutButton' value='Logout' />
+            </td>			
         </tr>
     </table>
     </form>
