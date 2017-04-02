@@ -26,7 +26,7 @@
     }
     ?>
 
-    <form name='rentalHistory' id='rentalHistory' action='rentalHistory.php' method='post'>
+    <form name='carRentalHistory' id='carRentalHistory' action='carRentalHistory.php' method='post'>
     <table border='0'>
             <td>
                 <input type='submit' id='backButton' name='backButton' value='Back' />

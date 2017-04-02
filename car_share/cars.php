@@ -31,7 +31,7 @@
             if (isset($_POST['rentalHistoryVin'])) {
                 $_SESSION['currentRentalHistoryVIN'] = $_POST['rentalHistoryVin'];
             }
-        header('Location: rentalHistory.php');
+        header('Location: carRentalHistory.php');
         exit;
 }
  ?>
