@@ -46,7 +46,8 @@ mysqli_query($cxn,"create table rental_comments
 mysqli_query($cxn,"insert into rental_comments values
 	('1110',	'1010',	'0000',	'4', 'very good!', null),
 	('1111',	'1011',	'0001',	'3', 'very medium!', null),	
-	('1112',	'1012',	'0002',	'2', 'very bad!', null);");
+	('1112',	'1012',	'0002',	'2', 'very bad!', null),
+	('1113' , '1012' , '0001', '1', 'meh was dece', 'true');");
 
 mysqli_query($cxn,"create table rental
 	(rental_ID				INT not null,
@@ -61,7 +62,8 @@ mysqli_query($cxn,"create table rental
 mysqli_query($cxn,"insert into rental values
 	(1110,0,9000,'2017-01-01 00:00:00','2017-01-02 00:00:00','normal'),
 	(1111,0,3000,'2017-02-02 00:00:00','2017-02-04 00:00:00','damaged'),
-	(1112,255,4000,'2016-03-03 00:00:00',null,'not running');");
+	(1112,17000,25001,'2016-03-03 00:00:00',null,'not running'),
+	(1113,10000,10001,'2016-02-05 00:00:00','2016-02-06 00:00:00','normal');");
 
 mysqli_query($cxn,"create table mem_rental
 	(rental_ID				INT not null,
@@ -73,7 +75,8 @@ mysqli_query($cxn,"create table mem_rental
 mysqli_query($cxn,"insert into mem_rental values
 	(1110,0000,'2017-01-01'),
 	(1111,0001,'2017-02-02'),
-	(1112,0002,'2016-03-03');");
+	(1112,0002,'2016-03-03'),
+	(1113,0001,'2016-02-05');");
 
 mysqli_query($cxn,"create table car_rental
 	(rental_ID				INT not null,
@@ -85,7 +88,8 @@ mysqli_query($cxn,"create table car_rental
 mysqli_query($cxn,"insert into car_rental values
 	(1110,1010,'2017-01-01'),
 	(1111,1011,'2017-02-02'),
-	(1112,1012,'2016-03-03');");
+	(1112,1012,'2016-03-03'),
+	(1113,1012,'2016-02-05');");
 
 mysqli_query($cxn,"create table reservations
 	(rental_ID				INT not null,
@@ -101,7 +105,8 @@ mysqli_query($cxn,"create table reservations
 mysqli_query($cxn,"insert into reservations values
 	(1110,2220,0000,1010,3330,1,'2017-01-01'),
 	(1111,2221,0001,1011,3331,2,'2017-02-02'),
-	(1112,2222,0002,1012,3332,3,'2016-03-03');");
+	(1112,2222,0002,1012,3332,3,'2016-03-03'),
+	(1113,2223,0001,1012,3333,1,'2016-02-05');");
 
 mysqli_query($cxn,"create table ktcs_member
 	(member_number				INT not null,

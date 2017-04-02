@@ -38,6 +38,10 @@ if(isset($_POST['loginBtn'])){
         // Get the number of rows returned
         $num = $result->num_rows;;
         
+        //
+//make a case in the if statements below that accounts for if they put nothing in
+        //
+
         if($num>0){
             //If the username/password matches a user in our database
             //Read the user details

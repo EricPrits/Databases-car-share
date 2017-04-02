@@ -49,8 +49,19 @@
         exit;
 }
 ?>
+
+   <?php
+        if(isset($_POST['backButton'])){
+        header('Location: admin.php');
+        exit;
+    }
+    ?>
+
     <form name='cars' id='cars' action='cars.php' method='post'>
     <table border='0'>
+            <td>
+                <input type='submit' id='backButton' name='backButton' value='Back' />
+            </td>
             <td>
                 <input type='submit' id='addCarButton' name='addCarButton' value='Add a car' />
             </td>
