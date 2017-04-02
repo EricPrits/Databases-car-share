@@ -22,7 +22,7 @@
 
    <?php
         if(isset($_POST['rentalHistoryButton'])){
-        header('Location: rentalHistory.php');
+        header('Location: memberRentalHistory.php');
         exit;
 }
  ?>
