@@ -28,7 +28,7 @@
 
     <?php
         if(isset($_POST['rentalHistoryButton'])){
-            if (isset($_POST['rentalHistoryVin'])) {
+            if (!empty($_POST['rentalHistoryVin'])) {
                 $_SESSION['currentRentalHistoryVIN'] = $_POST['rentalHistoryVin'];
             }
         header('Location: carRentalHistory.php');
@@ -66,7 +66,7 @@
                 <input type='submit' id='addCarButton' name='addCarButton' value='Add a car' />
             </td>
             <tr>
-                <td><input type='text' name='rentalHistoryVin' id='rentalHistoryVin' value='VIN' /></td>
+                <td><input type='text' name='rentalHistoryVin' id='rentalHistoryVin' placeholder='VIN' /></td>
                 <td><input type='submit' id='rentalHistoryButton' name='rentalHistoryButton' value='Get rental history' /></td>
             </tr>
             <td>

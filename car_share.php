@@ -56,7 +56,8 @@ mysqli_query($cxn,"create table rental
 	 pickup_time			datetime not null,
 	 dropoff_time			datetime,
      return_status			VARCHAR(11) not null,
-	 primary key (rental_ID)
+	 primary key (rental_ID),
+	 CONSTRAINT chk_return_status CHECK (return_status IN ('normal', 'damaged', 'not running'))
 	);");
 
 mysqli_query($cxn,"insert into rental values
