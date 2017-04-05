@@ -36,7 +36,7 @@
     <td>
     <?php
                 include_once 'config/connection.php'; 
-                $query = "SELECT * FROM cars right join reservations on cars.VIN=reservations.VIN where location_ID=?;";
+                $query = "SELECT * FROM cars right join reservations on cars.VIN=reservations.VIN left join parking_locations on parking_locations.location_ID=cars.location_ID where parking_locations.address=?";
                 $stmt = $con -> prepare($query); 
                 if (isset($_SESSION['currentReservationLocation'])) {
                     $currentLocation = $_SESSION['currentReservationLocation'];
@@ -54,6 +54,7 @@
                     <th class="content">Retal ID #</th>
                     <th class="content">Reservation #</th>
 					<th class="content">Location ID</th>
+					<th class="content">Address</th>
                     <th class="content">Member #</th>
                     <th class="content">VIN</th>
                     <th class="content">Access Code</th>
@@ -66,6 +67,7 @@
                                 <td class="content">' . $row["rental_ID"] . '</td>
                                 <td class="content">' . $row["reservation_number"] . '</td>
 								<td class="content">' . $row["location_ID"] . '</td>
+								<td class="content">' . $row["address"] . '</td>
                                 <td class="content">' . $row["member_number"] . '</td>
                                 <td class="content">' . $row["VIN"] . '</td>
                                 <td class="content">' . $row["access_code"] . '</td>
