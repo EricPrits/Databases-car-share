@@ -25,12 +25,30 @@
         exit;
     }
     ?>
+	<?php
+	echo "Enter the date range of one month:";
+        if(isset($_POST['invoiceButton'])){
+				if (isset($_POST['dateFrom'])) {
+                $_SESSION['currentDateFrom'] = $_POST['dateFrom'];
+            }
+			if (isset($_POST['dateTo'])) {
+                $_SESSION['currentDateTo'] = $_POST['dateTo'];
+            }
+        header('Location: invoice.php');
+        exit;
+}
+ ?>
 
     <form name='membersInfo' id='membersInfo' action='membersInfo.php' method='post'>
     <table border='0'>
             <td>
                 <input type='submit' id='backButton' name='backButton' value='Back' />
             </td>
+			<tr>
+                <td><input type='text' name='dateFrom' id='dateFrom' value='YYYY-MM-DD' /></td>
+				<td><input type='text' name='dateTo' id='dateTo' value='YYYY-MM-DD' /></td>
+                <td><input type='submit' id='invoiceButton' name='invoiceButton' value='Generate Invoice' /></td>
+            </tr>
     </table>
     </form>
     <td>

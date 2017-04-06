@@ -18,24 +18,24 @@
     //Create a user session or resume an existing one
     session_start();
     ?>
-<?php
-        if(isset($_POST['repondButton'])){
-            if (isset($_POST['responseComment'])) {
-                $_SESSION['currentReponseComment'] = $_POST['reponseComment'];
-            }
-			if (isset($_POST['commentRentalID'])) {
-                $_SESSION['currentcommentRentalID'] = $_POST['commentRentalID'];
-            }
-        header('Location: comments.php');
-        exit;
-}
-?>
    <?php
         if(isset($_POST['backButton'])){
         header('Location: members.php');
         exit;
     }
     ?>
+<?php
+        if(isset($_POST['respondButton'])&& isset($_POST['responseRentalID']) && isset($_POST['responseComment'])){
+            include_once 'config/connection.php'; 
+                $query = "UPDATE rental_comments SET comment_reply=? WHERE rental_ID=?";
+                $stmt = $con -> prepare($query); 
+                $stmt->bind_Param('ss', $_POST['responseComment'],$_POST['responseRentalID']);
+                try {
+                $stmt -> execute(); }
+                catch(Exception $exception) {
+                echo "Query failed: ", $exception->getMessage(); }
+}
+?>
 
     <form name='comments' id='comments' action='comments.php' method='post'>
     <table border='0'>
@@ -43,9 +43,9 @@
                 <input type='submit' id='backButton' name='backButton' value='Back' />
             </td>
 			<tr>
-                <td><input type='text' name='responseRentalD' id='responseRentalD' value='Comment Rental ID' /></td>
-				<td><input type='text' name='reponseComment' id='reponseComment' value='Comment' /></td>
-                <td><input type='submit' id='repondButton' name='repondButton' value='Submit Comment' /></td>
+                <td><input type='text' name='responseRentalID' id='responseRentalID' value='Comment Rental ID' /></td>
+				<td><input type='text' name='responseComment' id='responseComment' value='Comment' /></td>
+                <td><input type='submit' id='respondButton' name='respondButton' value='Submit Comment' /></td>
             </tr>
     </table>
     </form>
@@ -83,6 +83,6 @@
                 echo '</table>';
                 $result->close();
                 $con->close();
-            ?></td>
+            ?><td>
 </body>
 </html>
