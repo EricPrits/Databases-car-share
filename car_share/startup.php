@@ -10,6 +10,22 @@
  session_start();
  ?>
 
+ <?php
+ //check if the user clicked the logout link and set the logout GET parameter
+if(isset($_GET['logout'])){
+    //Destroy the user's session.
+    $_SESSION['member_number']=null;
+    session_destroy();
+}
+ ?>
+
+<?php
+        if(isset($_POST['signUpBtn'])){
+        header('Location: newMember.php');
+        exit;
+    }
+    ?>
+
 <?php
 
  
@@ -77,6 +93,9 @@ if(isset($_POST['loginBtn'])){
             <td></td>
             <td>
                 <input type='submit' id='loginBtn' name='loginBtn' value='Log In' /> 
+            </td>
+            <td>
+                <input type='submit' id='signUpBtn' name='signUpBtn' value='Sign Up' /> 
             </td>
         </tr>
     </table>
