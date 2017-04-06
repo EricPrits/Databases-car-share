@@ -17,6 +17,12 @@
     <?php
     //Create a user session or resume an existing one
     session_start();
+    include_once 'config/connection.php'; 
+    if(!isset($_SESSION['member_number'])){
+        //User is not logged in. Redirect the browser to the login index.php page and kill this page.
+        header("Location: startup.php");
+        die();
+    }
     ?>
 
    <?php
@@ -56,30 +62,55 @@
         exit;
     }
     ?>
-
     <form name='cars' id='cars' action='cars.php' method='post'>
     <table border='0'>
-            <td>
-                <input type='submit' id='backButton' name='backButton' value='Back' />
-            </td>
-            <td>
-                <input type='submit' id='addCarButton' name='addCarButton' value='Add a car' />
-            </td>
+            <tr>
+                <td><input type='submit' id='backButton' name='backButton' value='Back' /></td>
+                <td><a href="startup.php?logout=1">Log Out</a><br/></td>
+            </tr>
+            <tr>
+            <td><?php
+                $query = "select VIN, rentalcount
+                from (select VIN, count(*) as rentalcount from car_rental group by VIN) as M
+                where  rentalcount = (
+                select max(rentalcount)
+                from (select VIN, count(*) as rentalcount from car_rental group by VIN) as M);";
+                $stmt = $con -> prepare($query);
+                try {
+                $stmt -> execute(); }
+                catch(Exception $exception) {
+                echo "Query failed: ", $exception->getMessage(); }
+                $result = $stmt -> get_result();
+                $myrow = $result->fetch_assoc();                
+                echo "most rented car: VIN " . $myrow['VIN'] . " with " . $myrow['rentalcount'] . " rentals";
+                ?></td>
+                </tr>
+                <tr>
+                <td><?php
+                $query = "select VIN, rentalcount
+                from (select VIN, count(*) as rentalcount from car_rental group by VIN) as M
+                where  rentalcount = (
+                select min(rentalcount)
+                from (select VIN, count(*) as rentalcount from car_rental group by VIN) as M);";
+                $stmt = $con -> prepare($query);
+                try {
+                $stmt -> execute(); }
+                catch(Exception $exception) {
+                echo "Query failed: ", $exception->getMessage(); }
+                $result = $stmt -> get_result();
+                $myrow = $result->fetch_assoc();                
+                echo "least rented car: VIN " . $myrow['VIN'] . " with " . $myrow['rentalcount'] . " rentals";
+    ?></td></tr>
             <tr>
                 <td><input type='text' name='rentalHistoryVin' id='rentalHistoryVin' placeholder='VIN' /></td>
                 <td><input type='submit' id='rentalHistoryButton' name='rentalHistoryButton' value='Get rental history' /></td>
             </tr>
-            <td>
-                <input type='submit' id='car5000Button' name='car5000Button' value='Get 5000+ km cars' />
-            </td>
-            <td>
-                <input type='submit' id='damagedCarsButton' name='damagedCarsButton' value='Get damaged cars' />
-            </td>
-        </tr>
+            <tr><td><input type='submit' id='car5000Button' name='car5000Button' value='Get 5000+ km cars' /></td></tr>
+            <tr><td><input type='submit' id='damagedCarsButton' name='damagedCarsButton' value='Get damaged cars' /></td></tr>
+            <tr><td><input type='submit' id='addCarButton' name='addCarButton' value='Add a car' /></td></tr>
     </table>
     </form>
     <td><?php
-                include_once 'config/connection.php'; 
                 $query = "SELECT * FROM cars;";
                 $stmt = $con -> prepare($query); 
                 try {

@@ -6,6 +6,17 @@
 <body>
 
    <?php
+    //Create a user session or resume an existing one
+    session_start();
+    include_once 'config/connection.php'; 
+    if(!isset($_SESSION['member_number'])){
+        //User is not logged in. Redirect the browser to the login index.php page and kill this page.
+        header("Location: startup.php");
+        die();
+    }
+    ?>
+
+   <?php
         if(isset($_POST['carsButton'])){
         header('Location: cars.php');
         exit;
@@ -25,6 +36,7 @@
         exit;
 }
 ?>
+    <a href="startup.php?logout=1">Log Out</a><br/>
     <form name='admin' id='admin' action='admin.php' method='post'>
     <table border='0'>
             <td>
