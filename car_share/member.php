@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-		<style>
+	<style>
         table.content, th.content, td.content {
         border: 1px solid black;
         border-collapse: collapse;
@@ -10,9 +10,9 @@
             padding: 5px;
             text-align: left;    
                 }
-        </style>
-        <title>member</title>
-		<h1>WELCOME TO KTOWN CAR SHARE</h1>
+    </style>
+    <title>member</title>
+	<h1>KTOWN CAR SHARE</h1>
     </head>
 <body>
 	<?php
@@ -47,6 +47,13 @@
         exit;
 }
  ?>
+ 
+	<?php
+        if(isset($_POST['logOutButton'])){
+        header('Location: startup.php');
+        exit;
+}
+ ?>
 
     <form name='member' id='member' action='member.php' method='post'>
     <table border='0'>
@@ -61,7 +68,10 @@
             </td>
 			<td>
                 <input type='submit' id='reserveCarButton' name='reserveCarButton' value='Reserve Car' />
-            </td>	
+            </td>
+			<td>
+                <input type='submit' id='logOutButton' name='logOutButton' value='Logout' />
+            </td>			
         </tr>
     </table>
     </form>
