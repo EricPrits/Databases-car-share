@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-		<style>
+	<style>
         table.content, th.content, td.content {
         border: 1px solid black;
         border-collapse: collapse;
@@ -10,9 +10,9 @@
             padding: 5px;
             text-align: left;    
                 }
-        </style>
-        <title>member</title>
-		<h1>WELCOME TO KTOWN CAR SHARE</h1>
+    </style>
+    <title>member</title>
+	<h1>KTOWN CAR SHARE</h1>
     </head>
 <body>
 	<?php
@@ -44,6 +44,13 @@
 	<?php
         if(isset($_POST['reserveCarButton'])){
         header('Location: reserveCar.php');
+        exit;
+}
+ ?>
+ 
+	<?php
+        if(isset($_POST['logOutButton'])){
+        header('Location: startup.php');
         exit;
 }
  ?>
